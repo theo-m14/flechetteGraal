@@ -1,0 +1,324 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Poppins";
+}
+
+html {
+  overflow-y: hidden;
+}
+
+.btn {
+  color: white;
+  background-color: #5c472f;
+  padding: 5px 1.5em;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}
+.btn:hover {
+  background-color: #8a7258;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("/assets/fonts/Poppins-Bold.ttf");
+}
+#hideGame {
+  width: 100%;
+  height: 70vh;
+  background-color: #fafafa;
+  padding-top: 10em;
+}
+
+#entryForm {
+  background-color: #fffded;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+  margin: auto;
+  padding: 1em;
+  border: black 2px solid;
+  border-radius: 10px;
+  gap: 1em;
+}
+#entryForm #displayError p {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+}
+#entryForm select {
+  width: 50%;
+  padding: 5px 0;
+}
+#entryForm select option {
+  text-align: center;
+}
+
+#gameBoard {
+  background-color: #202020;
+  height: 100vh;
+  padding-top: 5px;
+  display: none;
+  position: relative;
+}
+#gameBoard #backgroundModal {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  background-color: rgba(196, 196, 196, 0.47);
+  width: 100%;
+  height: 100vh;
+}
+#gameBoard #backgroundModal #caseModal {
+  position: relative;
+  width: 75%;
+  height: 38vh;
+  margin: 8em auto;
+  border-radius: 10px;
+  border: black 1px solid;
+  background-color: #fffded;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+#gameBoard #backgroundModal #caseModal .fa-times-circle {
+  position: absolute;
+  right: -2%;
+  top: -2%;
+  font-size: 40px;
+  color: red;
+}
+#gameBoard #backgroundModal #caseModal > p:not(#sendScoreError) {
+  background-color: #fafafa;
+  width: 50%;
+  margin: 1em auto;
+  padding: 1em 0;
+  border: black solid 1px;
+}
+#gameBoard #backgroundModal #caseModal #sendScoreError {
+  margin-top: 3em;
+  color: red;
+  padding: 0;
+}
+#gameBoard #backgroundModal #caseModal div {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  margin-top: 1em;
+}
+#gameBoard #backgroundModal #caseModal div p {
+  background-color: #fafafa;
+  border: black solid 1px;
+  padding: 5%;
+}
+#gameBoard #backgroundModal #caseModal div p.clicked:not(#sendScoreError) {
+  background-color: aqua;
+}
+#gameBoard #backgroundModal #caseModal .btn {
+  display: block;
+  width: 25%;
+  margin: 1em auto;
+  font-weight: 500;
+}
+#gameBoard #backgroundModal #caseModal .btn i {
+  color: green;
+  padding-left: 5px;
+}
+#gameBoard #numberInfoContainer.cricketMode {
+  display: flex;
+  width: 100%;
+}
+#gameBoard #numberInfoContainer #number {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+}
+#gameBoard #numberInfoContainer #number.cricketMode {
+  flex-direction: column;
+  padding-top: 3em;
+  width: 65%;
+}
+#gameBoard #numberInfoContainer #number #rankingMessage {
+  position: absolute;
+  width: 100%;
+  height: 93%;
+  display: none;
+  background-color: #fffded;
+  box-shadow: none;
+  box-sizing: content-box;
+  border-bottom: #202020 4px solid;
+}
+#gameBoard #numberInfoContainer #number #rankingMessage.active {
+  display: block;
+}
+#gameBoard #numberInfoContainer #number #rankingMessage h1 {
+  text-align: center;
+  padding: 2em 0;
+}
+#gameBoard #numberInfoContainer #number #rankingMessage p {
+  color: black;
+}
+#gameBoard #numberInfoContainer #number p {
+  color: white;
+  text-align: center;
+  font-family: "Poppins-Bold";
+}
+#gameBoard #numberInfoContainer #number .rankPlayer {
+  margin-top: 15px;
+}
+#gameBoard #numberInfoContainer #number div {
+  width: 22%;
+  background-color: #3daf2f;
+  padding: 1.2em 0;
+  box-shadow: 0px 0px 5px rgba(106, 206, 94, 0.7);
+}
+#gameBoard #numberInfoContainer #number .redCase {
+  background-color: #ff0000;
+  box-shadow: 0px 0px 5px rgba(255, 89, 89, 0.7);
+}
+#gameBoard #numberInfoContainer #number .cricketCase {
+  box-shadow: none;
+  background-color: #fffded;
+  transition: background-color 0.1s ease-in-out;
+  width: 18%;
+  padding: 0.75em 0;
+}
+#gameBoard #numberInfoContainer #number .cricketCase p {
+  color: black;
+}
+#gameBoard #numberInfoContainer #number .cricketCase:active {
+  background-color: #5c472f;
+}
+#gameBoard #numberInfoContainer #cricketInfo {
+  display: flex;
+  width: 30%;
+  justify-content: flex-end;
+  gap: 50%;
+}
+#gameBoard #numberInfoContainer #cricketInfo i {
+  position: absolute;
+  top: calc(50% - 12px);
+  right: calc(50% - 12px);
+  font-size: 25px;
+  color: #fffded;
+  opacity: 0;
+}
+#gameBoard #numberInfoContainer #cricketInfo i.active {
+  opacity: 1;
+}
+#gameBoard #numberInfoContainer #cricketInfo i:nth-of-type(2),
+#gameBoard #numberInfoContainer #cricketInfo i:nth-of-type(1) {
+  right: calc(50% - 14px);
+}
+#gameBoard #numberInfoContainer #cricketInfo i:nth-of-type(1) {
+  transform: rotate(98deg);
+}
+#gameBoard #numberInfoContainer #cricketInfo.none {
+  display: none;
+}
+#gameBoard #numberInfoContainer #cricketInfo > div {
+  width: 90%;
+}
+#gameBoard #numberInfoContainer #cricketInfo .arrowPlayer {
+  display: flex;
+  flex-direction: column;
+  gap: 3.3em;
+  justify-content: space-between;
+  margin-top: 3em;
+}
+#gameBoard #numberInfoContainer #cricketInfo p {
+  color: white;
+}
+#gameBoard #numberInfoContainer #cricketInfo .cricketArrow {
+  position: relative;
+}
+
+#playerPoint {
+  background-color: #fffded;
+  margin-top: 1.5em;
+  height: 30vh;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 1em;
+  padding-top: 3px;
+  box-shadow: 0px -3px 17px white;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#playerPoint > div {
+  width: 45%;
+}
+#playerPoint .displayPoint {
+  background-color: #fafafa;
+  border: 1px solid black;
+  width: min-content;
+  padding: 0 2em;
+  margin: 2px auto;
+}
+#playerPoint #player1 {
+  display: none;
+}
+#playerPoint #player1 p:first-child.active {
+  font-weight: bold;
+}
+#playerPoint #player1 .displayPoint {
+  color: red;
+}
+#playerPoint #player1 .displayPoint.active {
+  color: white;
+  font-weight: bold;
+  background-color: red;
+}
+#playerPoint #player2 {
+  display: none;
+}
+#playerPoint #player2 p:first-child.active {
+  font-weight: bold;
+}
+#playerPoint #player2 .displayPoint {
+  color: green;
+}
+#playerPoint #player2 .displayPoint.active {
+  color: white;
+  font-weight: bold;
+  background-color: green;
+}
+#playerPoint #player3 {
+  display: none;
+}
+#playerPoint #player3 .displayPoint {
+  color: blue;
+}
+#playerPoint #player3 .displayPoint.active {
+  color: white;
+  font-weight: bold;
+  background-color: blue;
+}
+#playerPoint #player4 {
+  display: none;
+}
+#playerPoint #player4 .displayPoint {
+  color: #fd00b6;
+}
+#playerPoint #player4 .displayPoint.active {
+  color: white;
+  font-weight: bold;
+  background-color: #fd00b6;
+}
+#playerPoint .btn {
+  flex: 0 0 50%;
+  align-self: end;
+}
+
+/*# sourceMappingURL=style.css.map */

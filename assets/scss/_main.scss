@@ -1,0 +1,328 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Poppins";
+}
+
+html {
+  overflow-y: hidden;
+}
+
+.btn {
+  color: white;
+  background-color: $primaryColor;
+  padding: 5px 1.5em;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: #8a7258;
+  }
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("/assets/fonts/Poppins-Bold.ttf");
+}
+
+#hideGame {
+  width: 100%;
+  height: 70vh;
+  background-color: #fafafa;
+  padding-top: 10em;
+}
+
+#entryForm {
+  #displayError {
+    p {
+      color: red;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+  background-color: $secondaryColor;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+  margin: auto;
+  padding: 1em;
+  border: black 2px solid;
+  border-radius: 10px;
+  gap: 1em;
+  select {
+    width: 50%;
+    padding: 5px 0;
+    option {
+      text-align: center;
+    }
+  }
+}
+
+#gameBoard {
+  background-color: #202020;
+  height: 100vh;
+  padding-top: 5px;
+  display: none;
+  position: relative;
+  #backgroundModal {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    background-color: rgba(196, 196, 196, 0.47);
+    width: 100%;
+    height: 100vh;
+    #caseModal {
+      position: relative;
+      width: 75%;
+      height: 38vh;
+      margin: 8em auto;
+      border-radius: 10px;
+      border: black 1px solid;
+      background-color: $secondaryColor;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      .fa-times-circle {
+        position: absolute;
+        right: -2%;
+        top: -2%;
+        font-size: 40px;
+        color: red;
+      }
+      > p:not(#sendScoreError) {
+        background-color: #fafafa;
+        width: 50%;
+        margin: 1em auto;
+        padding: 1em 0;
+        border: black solid 1px;
+      }
+      #sendScoreError {
+        margin-top: 3em;
+        color: red;
+        padding: 0;
+      }
+      div {
+        display: flex;
+        gap: 2em;
+        justify-content: center;
+        margin-top: 1em;
+        p {
+          background-color: #fafafa;
+          border: black solid 1px;
+          padding: 5%;
+          &.clicked:not(#sendScoreError) {
+            background-color: aqua;
+          }
+        }
+      }
+      .btn {
+        display: block;
+        width: 25%;
+        margin: 1em auto;
+        font-weight: 500;
+        i {
+          color: green;
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+  #numberInfoContainer {
+    &.cricketMode {
+      display: flex;
+      width: 100%;
+    }
+    #number {
+      position: relative;
+      &.cricketMode {
+        flex-direction: column;
+        padding-top: 3em;
+        width: 65%;
+      }
+      #rankingMessage {
+        position: absolute;
+        width: 100%;
+        height: 93%;
+        display: none;
+        background-color: $secondaryColor;
+        box-shadow: none;
+        box-sizing: content-box;
+        border-bottom: #202020 4px solid;
+        &.active {
+          display: block;
+        }
+        h1 {
+          text-align: center;
+          padding: 2em 0;
+        }
+        p {
+          color: black;
+        }
+      }
+      p {
+        color: white;
+        text-align: center;
+        font-family: "Poppins-Bold";
+      }
+      .rankPlayer {
+        margin-top: 15px;
+      }
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: center;
+      div {
+        width: 22%;
+        background-color: #3daf2f;
+        padding: 1.2em 0;
+        box-shadow: 0px 0px 5px rgba(106, 206, 94, 0.7);
+      }
+      .redCase {
+        background-color: #ff0000;
+        box-shadow: 0px 0px 5px rgba(255, 89, 89, 0.7);
+      }
+      .cricketCase {
+        box-shadow: none;
+        background-color: $secondaryColor;
+        transition: background-color 0.1s ease-in-out;
+        p {
+          color: black;
+        }
+        width: 18%;
+        padding: 0.75em 0;
+        &:active {
+          background-color: $primaryColor;
+        }
+      }
+    }
+    #cricketInfo {
+      i {
+        position: absolute;
+        top: calc(50% - 12px);
+        right: calc(50% - 12px);
+        font-size: 25px;
+        color: $secondaryColor;
+        opacity: 0;
+        &.active {
+          opacity: 1;
+        }
+      }
+      i:nth-of-type(2),
+      i:nth-of-type(1) {
+        right: calc(50% - 14px);
+      }
+      i:nth-of-type(1) {
+        transform: rotate(98deg);
+      }
+      &.none {
+        display: none;
+      }
+      display: flex;
+      width: 30%;
+      justify-content: flex-end;
+      gap: 50%;
+      > div {
+        width: 90%;
+      }
+      .arrowPlayer {
+        display: flex;
+        flex-direction: column;
+        gap: 3.3em;
+        justify-content: space-between;
+        margin-top: 3em;
+      }
+      p {
+        color: white;
+      }
+      .cricketArrow {
+        position: relative;
+      }
+    }
+  }
+}
+
+#playerPoint {
+  background-color: $secondaryColor;
+  margin-top: 1.5em;
+  height: 30vh;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 1em;
+  padding-top: 3px;
+  box-shadow: 0px -3px 17px white;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  > div {
+    width: 45%;
+  }
+  .displayPoint {
+    background-color: #fafafa;
+    border: 1px solid black;
+    width: min-content;
+    padding: 0 2em;
+    margin: 2px auto;
+  }
+  #player1 {
+    display: none;
+    p:first-child.active {
+      font-weight: bold;
+    }
+    .displayPoint {
+      color: red;
+      &.active {
+        color: white;
+        font-weight: bold;
+        background-color: red;
+      }
+    }
+  }
+  #player2 {
+    display: none;
+    p:first-child.active {
+      font-weight: bold;
+    }
+    .displayPoint {
+      color: green;
+      &.active {
+        color: white;
+        font-weight: bold;
+        background-color: green;
+      }
+    }
+  }
+  #player3 {
+    display: none;
+    .displayPoint {
+      color: blue;
+      &.active {
+        color: white;
+        font-weight: bold;
+        background-color: blue;
+      }
+    }
+  }
+  #player4 {
+    display: none;
+    .displayPoint {
+      color: #fd00b6;
+      &.active {
+        color: white;
+        font-weight: bold;
+        background-color: #fd00b6;
+      }
+    }
+  }
+  .btn {
+    flex: 0 0 50%;
+    align-self: end;
+  }
+}
